@@ -4,13 +4,18 @@ a information app for titan team work.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+This project is a application following the website of titan team project
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
+ Changes that have beem done:
+
+
+Changes-(3/9/2026):-
+-created base project.
+-created the Main Page as empty.
+
+
+
 
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
