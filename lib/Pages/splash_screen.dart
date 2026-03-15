@@ -1,5 +1,6 @@
 import 'package:another_flutter_splash_screen/another_flutter_splash_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:titan_information_app/Pages/AboutPage.dart';
 import 'package:titan_information_app/Pages/MainPage.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -15,12 +16,7 @@ class _SplashScreenState extends State<SplashScreen> {
     return Scaffold(
       body: FlutterSplashScreen.fadeIn(
         backgroundColor: Color(0xff9EFF00),
-        onInit: () {
-          debugPrint("On Init");
-        },
-        onEnd: () {
-          debugPrint("On End");
-        },
+
         duration: const Duration(seconds: 7),
         childWidget: SizedBox(
           height: 200,
@@ -57,7 +53,6 @@ class _SplashScreenState extends State<SplashScreen> {
             ],
           ),
         ),
-        onAnimationEnd: () => debugPrint("On Fade In End"),
         nextScreen: const MainPage(),
       ),
     );
