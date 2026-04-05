@@ -14,7 +14,7 @@ class CustomAppBar extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Padding(
-              padding: const EdgeInsets.fromLTRB(16, 40, 38, 20),
+              padding: const EdgeInsets.fromLTRB(0, 40, 36, 20),
               child: Row(
                 children: [
                   Image.asset('assets/images/Logo_filled.png', scale: 4),
@@ -30,7 +30,7 @@ class CustomAppBar extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.fromLTRB(202, 40, 16, 20),
+              padding: const EdgeInsets.fromLTRB(202, 40, 20, 20),
               child: Builder(
                 builder: (context) {
                   return InkWell(

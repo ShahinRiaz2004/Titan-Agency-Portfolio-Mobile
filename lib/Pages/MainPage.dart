@@ -1,3 +1,4 @@
+import 'dart:math' as math;
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
@@ -6,6 +7,7 @@ import 'package:titan_information_app/Pages/AboutPage.dart';
 import 'package:titan_information_app/Pages/WorkPage.dart';
 import '../Widgets/CustomAppbar.dart';
 import '../Widgets/CustomDrawer.dart';
+import '../Widgets/QandACard.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
@@ -15,6 +17,33 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
+  List<double> _turns = [0.0, 0.0, 0.0, 0.0];
+  List<Color> QandA_Ext_But = [
+    Colors.white,
+    Colors.white,
+    Colors.white,
+    Colors.white,
+  ];
+  List<double> Padder = [18, 18, 18, 18];
+  List<bool> _isExpanded = [false, false, false, false];
+  final EmailController = TextEditingController();
+  final NameController = TextEditingController();
+  final MessageController = TextEditingController();
+  String nameChecker = '';
+  String emailNotValid = '';
+  String MessageChecker = '';
+  String? namevaluelooker = '';
+  final formKey = GlobalKey<FormState>();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    EmailController.addListener(() => setState(() {}));
+    NameController.addListener(() => setState(() {}));
+    MessageController.addListener(() => setState(() {}));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -1533,8 +1562,956 @@ class _MainPageState extends State<MainPage> {
               ),
             ),
           ),
+          Padding(
+            padding: EdgeInsets.fromLTRB(16, 0, 16, 0),
+            child: Container(
+              width: double.infinity,
+              decoration: BoxDecoration(
+                border: Border.all(color: Color.fromRGBO(38, 38, 38, 1)),
+              ),
+              child: Column(
+                children: [
+                  Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      Container(
+                        width: double.infinity,
+                        height: 222,
+                        decoration: BoxDecoration(
+                          color: Color(0xff1A1A1A),
+                          backgroundBlendMode: BlendMode.overlay,
+                          image: DecorationImage(
+                            opacity: 0.1,
+                            image: AssetImage(
+                              'assets/images/Abstract Design 4.png',
+                            ),
+                            colorFilter: ColorFilter.mode(
+                              Color.fromRGBO(172, 255, 36, 0.1),
+                              BlendMode.color,
+                            ),
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                        child: Image.asset(
+                          'assets/images/square_tiles.png',
+                          repeat: ImageRepeat.repeat,
+                          scale: 1,
+                          colorBlendMode: BlendMode.darken,
+                        ),
+                      ),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.fromLTRB(24, 20, 24, 10),
+                            child: Center(
+                              child: Text(
+                                'What our Clients say About us',
+                                textAlign: TextAlign.center,
+                                style: GoogleFonts.barlow(
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 28,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                          ),
+
+                          Padding(
+                            padding: EdgeInsets.fromLTRB(12, 0, 12, 10),
+                            child: Center(
+                              child: Text(
+                                'At SquareUp, we take pride in delivering exceptional digital products and services that drive success for our clients. Here\'s what some of our satisfied clients have to say about their experience working with us',
+                                textAlign: TextAlign.center,
+                                style: GoogleFonts.barlow(
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 15,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ), //What our Clients Say About us.
+                  Column(
+                    children: [
+                      Container(
+                        child: QandACard(
+                          title: 'What services does SquareUp provide?',
+                          text:
+                              'SquareUp offers a range of services including design, engineering, and project management. We specialize in user experience design, web development, mobile app development, custom software development, branding and identity, and more.',
+
+                          // Settings--------------------
+                          Padder: _isExpanded[0]
+                              ? Padder[0] = 36
+                              : Padder[0] = 24,
+                          QandA_Ext_But: _isExpanded[0]
+                              ? QandA_Ext_But[0] = Color.fromRGBO(
+                                  216,
+                                  255,
+                                  153,
+                                  1,
+                                )
+                              : QandA_Ext_But[0] = Colors.white,
+                          turns: _isExpanded[0]
+                              ? _turns[0] = 1.0 / 8.0
+                              : _turns[0] = 0,
+                          isExpanded: _isExpanded[0],
+                          onPressed: () {
+                            setState(() {
+                              _isExpanded[0] = !_isExpanded[0];
+                            });
+                          },
+                          Number: "01",
+                        ),
+                      ),
+                      Container(
+                        width: double.infinity,
+                        height: 0,
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: Color.fromRGBO(38, 38, 38, 1),
+                            width: 1,
+                          ),
+                        ),
+                      ),
+                      Container(
+                        child: QandACard(
+                          title: 'How can SquareUp help my business?',
+                          text:
+                              'SquareUp offers a range of services including design, engineering, and project management. We specialize in user experience design, web development, mobile app development, custom software development, branding and identity, and more.',
+
+                          // Settings--------------------
+                          Padder: _isExpanded[1]
+                              ? Padder[1] = 36
+                              : Padder[1] = 24,
+                          QandA_Ext_But: _isExpanded[1]
+                              ? QandA_Ext_But[1] = Color.fromRGBO(
+                                  216,
+                                  255,
+                                  153,
+                                  1,
+                                )
+                              : QandA_Ext_But[1] = Colors.white,
+                          turns: _isExpanded[1]
+                              ? _turns[1] = 1.0 / 8.0
+                              : _turns[1] = 0,
+                          isExpanded: _isExpanded[1],
+                          onPressed: () {
+                            setState(() {
+                              _isExpanded[1] = !_isExpanded[1];
+                            });
+                          },
+                          Number: "02",
+                        ),
+                      ),
+                      Container(
+                        width: double.infinity,
+                        height: 0,
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: Color.fromRGBO(38, 38, 38, 1),
+                            width: 1,
+                          ),
+                        ),
+                      ),
+                      Container(
+                        child: QandACard(
+                          title: 'What industries does SquareUp work with?',
+                          text:
+                              'SquareUp offers a range of services including design, engineering, and project management. We specialize in user experience design, web development, mobile app development, custom software development, branding and identity, and more.',
+
+                          // Settings--------------------
+                          Padder: _isExpanded[2]
+                              ? Padder[2] = 36
+                              : Padder[2] = 24,
+                          QandA_Ext_But: _isExpanded[2]
+                              ? QandA_Ext_But[2] = Color.fromRGBO(
+                                  216,
+                                  255,
+                                  153,
+                                  1,
+                                )
+                              : QandA_Ext_But[2] = Colors.white,
+                          turns: _isExpanded[2]
+                              ? _turns[2] = 1.0 / 8.0
+                              : _turns[2] = 0,
+                          isExpanded: _isExpanded[2],
+                          onPressed: () {
+                            setState(() {
+                              _isExpanded[2] = !_isExpanded[2];
+                            });
+                          },
+                          Number: "03",
+                        ),
+                      ),
+                      Container(
+                        width: double.infinity,
+                        height: 0,
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: Color.fromRGBO(38, 38, 38, 1),
+                            width: 1,
+                          ),
+                        ),
+                      ),
+                      Container(
+                        child: QandACard(
+                          Number: "04",
+                          title:
+                              'How long does it take to complete a project with SquareUp?',
+                          text:
+                              'SquareUp offers a range of services including design, engineering, and project management. We specialize in user experience design, web development, mobile app development, custom software development, branding and identity, and more.',
+
+                          // Settings--------------------
+                          Padder: _isExpanded[3]
+                              ? Padder[3] = 36
+                              : Padder[3] = 24,
+                          QandA_Ext_But: _isExpanded[3]
+                              ? QandA_Ext_But[3] = Color.fromRGBO(
+                                  216,
+                                  255,
+                                  153,
+                                  1,
+                                )
+                              : QandA_Ext_But[3] = Colors.white,
+                          turns: _isExpanded[3]
+                              ? _turns[3] = 1.0 / 8.0
+                              : _turns[3] = 0,
+                          isExpanded: _isExpanded[3],
+                          onPressed: () {
+                            setState(() {
+                              _isExpanded[3] = !_isExpanded[3];
+                            });
+                          },
+                        ),
+                      ),
+                      Container(
+                        width: double.infinity,
+                        height: 0,
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: Color.fromRGBO(38, 38, 38, 1),
+                            width: 1,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ),
+          InformationSubmitWidget(
+            NameController: NameController,
+            EmailController: EmailController,
+            nameChecker: nameChecker,
+            OnChanged: (value) => setState(() {
+              this.nameChecker = value;
+            }),
+            OnFieldSubmitted: (value) {
+              setState(() {
+                emailNotValid = value;
+              });
+            },
+            MessageController: MessageController,
+          ),
+          Container(
+            height: 691,
+            width: double.infinity,
+            decoration: BoxDecoration(
+              border: Border(
+                top: BorderSide(color: Color.fromRGBO(36, 36, 36, 1), width: 1),
+              ),
+            ),
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(16, 30, 16, 0),
+                  child: Container(
+                    height: 400,
+                    child: Column(
+                      children: [
+                        Image.asset('assets/images/Top_Logo.png', scale: 3),
+                        Padding(
+                          padding: EdgeInsets.fromLTRB(0, 30, 0, 30),
+                          child: Container(
+                            height: 0,
+                            width: double.infinity,
+                            decoration: BoxDecoration(
+                              border: Border.all(
+                                color: Color.fromRGBO(36, 36, 36, 1),
+                                width: 1,
+                              ),
+                            ),
+                          ),
+                        ),
+                        Container(
+                          child: Column(
+                            children: [
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  TextButton(
+                                    onPressed: () {},
+                                    child: Text(
+                                      'Home',
+                                      style: GoogleFonts.barlow(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w500,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  ),
+                                  TextButton(
+                                    onPressed: () {},
+                                    child: Text(
+                                      'Services',
+                                      style: GoogleFonts.barlow(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w500,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  ),
+                                  TextButton(
+                                    onPressed: () {},
+                                    child: Text(
+                                      'Work',
+                                      style: GoogleFonts.barlow(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w500,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  ),
+                                  TextButton(
+                                    onPressed: () {},
+                                    child: Text(
+                                      'Process',
+                                      style: GoogleFonts.barlow(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w500,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  ),
+                                  TextButton(
+                                    onPressed: () {},
+                                    child: Text(
+                                      'About',
+                                      style: GoogleFonts.barlow(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w500,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  TextButton(
+                                    onPressed: () {},
+                                    child: Text(
+                                      'Carrers',
+                                      style: GoogleFonts.barlow(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w500,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  ),
+                                  TextButton(
+                                    onPressed: () {},
+                                    child: Text(
+                                      'Contact',
+                                      style: GoogleFonts.barlow(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w500,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+
+                        Padding(
+                          padding: EdgeInsets.fromLTRB(0, 30, 0, 30),
+                          child: Image.asset('assets/images/Sub Container.png'),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.fromLTRB(16, 0, 16, 0),
+                  child: Image.asset('assets/images/Container.png'),
+                ),
+              ],
+            ),
+          ),
         ],
       ),
+    );
+  }
+}
+
+class InformationSubmitWidget extends StatefulWidget {
+  InformationSubmitWidget({
+    super.key,
+    required this.NameController,
+    required this.EmailController,
+    required this.nameChecker,
+    required this.OnChanged,
+    required this.OnFieldSubmitted,
+    required this.MessageController,
+  });
+
+  final TextEditingController NameController;
+  final TextEditingController EmailController;
+  final TextEditingController MessageController;
+  final String nameChecker;
+  final ValueChanged<String> OnChanged;
+  final ValueChanged<String> OnFieldSubmitted;
+
+  @override
+  State<InformationSubmitWidget> createState() =>
+      _InformationSubmitWidgetState();
+}
+
+class _InformationSubmitWidgetState extends State<InformationSubmitWidget> {
+  final formKey = GlobalKey<FormState>();
+  final nameFocus = FocusNode();
+  final emailFocus = FocusNode();
+  final messageFocus = FocusNode();
+
+  int shakeNameTick = 0;
+  int shakeEmailTick = 0;
+
+  @override
+  void dispose() {
+    nameFocus.dispose();
+    emailFocus.dispose();
+    messageFocus.dispose();
+
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.fromLTRB(16, 0, 16, 0),
+      child: Container(
+        width: double.infinity,
+        decoration: BoxDecoration(
+          border: Border.all(color: Color.fromRGBO(38, 38, 38, 1)),
+        ),
+        child: Column(
+          children: [
+            Stack(
+              alignment: Alignment.center,
+              children: [
+                Container(
+                  width: double.infinity,
+                  height: 390,
+                  decoration: BoxDecoration(
+                    color: Color(0xff1A1A1A),
+                    backgroundBlendMode: BlendMode.overlay,
+                    image: DecorationImage(
+                      opacity: 0.1,
+                      image: AssetImage('assets/images/Abstract Design 5.png'),
+                      colorFilter: ColorFilter.mode(
+                        Color.fromRGBO(172, 255, 36, 0.1),
+                        BlendMode.color,
+                      ),
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                  child: Image.asset(
+                    'assets/images/square_tiles.png',
+                    repeat: ImageRepeat.repeat,
+                    scale: 1,
+                    colorBlendMode: BlendMode.darken,
+                  ),
+                ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(0, 20, 0, 28),
+                      child: Image.asset('assets/images/Logo-Green-Hollow.png'),
+                    ),
+
+                    Center(
+                      child: Text(
+                        'Thank you for your Interest in Titan.',
+                        textAlign: TextAlign.center,
+                        style: GoogleFonts.barlow(
+                          fontWeight: FontWeight.w600,
+                          fontSize: 24,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(16, 2, 16, 0),
+                      child: Center(
+                        child: Text(
+                          'We would love to hear from you and discuss how we can help bring your digital ideas to life. Here are the different ways you can get in touch with us.',
+                          textAlign: TextAlign.center,
+                          style: GoogleFonts.barlow(
+                            fontWeight: FontWeight.w400,
+                            fontSize: 15,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 28),
+                      child: TextButton(
+                        onPressed: () {},
+                        child: Container(
+                          width: 128,
+                          height: 58,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                            color: Color.fromRGBO(158, 255, 0, 1),
+                          ),
+                          child: Center(
+                            child: Text(
+                              'Start Project',
+                              style: GoogleFonts.barlow(
+                                fontSize: 15,
+                                fontWeight: FontWeight.w500,
+                                color: Color.fromRGBO(38, 38, 38, 1),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ), //Our Services
+            Container(
+              child: Form(
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+                key: formKey,
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Container(
+                        height: 116,
+                        width: 330,
+                        decoration: BoxDecoration(
+                          color: Color.fromRGBO(36, 36, 36, 0.5),
+                          borderRadius: BorderRadius.circular(6),
+                          border: Border.all(
+                            color: Color.fromRGBO(38, 38, 38, 1),
+                          ),
+                        ),
+                        child: Column(
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.fromLTRB(24, 8, 24, 0),
+                              child: Row(
+                                children: [
+                                  Text(
+                                    'Full Name',
+                                    style: GoogleFonts.barlow(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w500,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.fromLTRB(24, 0, 24, 12),
+                              child: ShakeWidget(
+                                trigger: shakeNameTick,
+                                child: TextFormField(
+                                  onChanged: (value) {
+                                    widget.OnChanged(value);
+                                  },
+                                  onFieldSubmitted: widget.OnFieldSubmitted,
+                                  focusNode: nameFocus,
+                                  controller: widget.NameController,
+                                  keyboardType: TextInputType.text,
+                                  textInputAction: TextInputAction.done,
+                                  cursorColor: Color.fromRGBO(158, 255, 0, 1),
+                                  validator: (value) {
+                                    if (value == null || value.isEmpty) {
+                                      return 'Name is required';
+                                    } else if (value.trim().length < 3) {
+                                      return 'Name must be at least 3 characters long.';
+                                    }
+                                    return null;
+                                  },
+                                  style: GoogleFonts.barlow(
+                                    color: Colors.white,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                  decoration: InputDecoration(
+                                    enabledBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: Color.fromRGBO(158, 255, 0, 0.5),
+                                      ),
+                                    ),
+
+                                    focusedBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: Color.fromRGBO(158, 255, 0, 1),
+                                        width: 2,
+                                      ),
+                                    ),
+
+                                    border: UnderlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: Colors.grey,
+                                      ),
+                                    ),
+                                    suffixIcon:
+                                        widget.NameController.text.isEmpty
+                                        ? Container(width: 0)
+                                        : IconButton(
+                                            onPressed: () =>
+                                                widget.NameController.clear(),
+                                            icon: Icon(Icons.close),
+                                          ),
+                                    hintText: 'Type Here...',
+                                    hintStyle: const TextStyle(
+                                      color: Colors.grey,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Container(
+                        height: 116,
+                        width: 330,
+                        decoration: BoxDecoration(
+                          color: Color.fromRGBO(36, 36, 36, 0.5),
+                          borderRadius: BorderRadius.circular(6),
+                          border: Border.all(
+                            color: Color.fromRGBO(38, 38, 38, 1),
+                          ),
+                        ),
+                        child: Column(
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.fromLTRB(24, 8, 24, 0),
+                              child: Row(
+                                children: [
+                                  Text(
+                                    'Email',
+                                    style: GoogleFonts.barlow(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w500,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.fromLTRB(24, 0, 24, 12),
+                              child: ShakeWidget(
+                                trigger: shakeEmailTick,
+                                child: TextFormField(
+                                  controller: widget.EmailController,
+                                  focusNode: emailFocus,
+                                  keyboardType: TextInputType.emailAddress,
+                                  textInputAction: TextInputAction.done,
+                                  cursorColor: Color.fromRGBO(158, 255, 0, 1),
+
+                                  validator: (value) {
+                                    final emailRegex = RegExp(
+                                      r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$',
+                                    );
+                                    if (value == null || value.isEmpty) {
+                                      return 'Email is required';
+                                    } else if (!emailRegex.hasMatch(value)) {
+                                      return 'Email is not valid';
+                                    }
+                                    return null;
+                                  },
+                                  style: GoogleFonts.barlow(
+                                    color: Colors.white,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                  decoration: InputDecoration(
+                                    enabledBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: Color.fromRGBO(158, 255, 0, 0.5),
+                                      ),
+                                    ),
+
+                                    focusedBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: Color.fromRGBO(158, 255, 0, 1),
+                                        width: 2,
+                                      ),
+                                    ),
+
+                                    border: UnderlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: Colors.grey,
+                                      ),
+                                    ),
+                                    suffixIcon:
+                                        widget.EmailController.text.isEmpty
+                                        ? Container(width: 0)
+                                        : IconButton(
+                                            onPressed: () =>
+                                                widget.EmailController.clear(),
+                                            icon: Icon(Icons.close),
+                                          ),
+                                    hintText: 'Type Here...',
+                                    hintStyle: const TextStyle(
+                                      color: Colors.grey,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Container(
+                        width: 330,
+                        decoration: BoxDecoration(
+                          color: Color.fromRGBO(36, 36, 36, 0.5),
+                          borderRadius: BorderRadius.circular(6),
+                          border: Border.all(
+                            color: Color.fromRGBO(38, 38, 38, 1),
+                          ),
+                        ),
+                        child: Column(
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.fromLTRB(24, 8, 24, 0),
+                              child: Row(
+                                children: [
+                                  Text(
+                                    'Your Message',
+                                    style: GoogleFonts.barlow(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w500,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.fromLTRB(24, 0, 24, 22),
+                              child: ConstrainedBox(
+                                constraints: BoxConstraints(
+                                  minHeight: 0,
+                                  maxHeight: 150,
+                                ),
+                                child: TextFormField(
+                                  controller: widget.MessageController,
+                                  focusNode: messageFocus,
+                                  keyboardType: TextInputType.multiline,
+                                  minLines: 1,
+                                  maxLines: null,
+                                  textInputAction: TextInputAction.done,
+                                  cursorColor: Color.fromRGBO(158, 255, 0, 1),
+
+                                  style: GoogleFonts.barlow(
+                                    color: Colors.white,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                  decoration: InputDecoration(
+                                    hintText: 'Your Message....',
+                                    isDense: true,
+                                    contentPadding: EdgeInsets.symmetric(
+                                      vertical: 8,
+                                    ),
+                                    enabledBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: Color.fromRGBO(158, 255, 0, 0.5),
+                                      ),
+                                    ),
+
+                                    focusedBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: Color.fromRGBO(158, 255, 0, 1),
+                                        width: 2,
+                                      ),
+                                    ),
+
+                                    border: UnderlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: Colors.grey,
+                                      ),
+                                    ),
+
+                                    suffixIcon:
+                                        widget.MessageController.text.isEmpty
+                                        ? null
+                                        : IconButton(
+                                            onPressed: () => widget
+                                                .MessageController.clear(),
+                                            icon: Icon(Icons.close),
+                                          ),
+                                    hintStyle: const TextStyle(
+                                      color: Colors.grey,
+                                      fontStyle: FontStyle.italic,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(0, 18, 0, 22),
+                      child: TextButton(
+                        onPressed: () {
+                          final formState = formKey.currentState;
+
+                          if (formState == null) return;
+
+                          final isValid = formState.validate();
+
+                          if (!isValid) {
+                            final name = widget.NameController.text.trim();
+                            final email = widget.EmailController.text.trim();
+
+                            final emailRegex = RegExp(
+                              r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$',
+                            );
+
+                            setState(() {
+                              if (name.isEmpty || name.length < 3) {
+                                shakeNameTick++;
+                              }
+
+                              if (email.isEmpty ||
+                                  !emailRegex.hasMatch(email)) {
+                                shakeEmailTick++;
+                              }
+                            });
+
+                            if (name.isEmpty || name.length < 3) {
+                              nameFocus.requestFocus();
+                            } else if (email.isEmpty ||
+                                !emailRegex.hasMatch(email)) {
+                              emailFocus.requestFocus();
+                            }
+                          }
+                        },
+                        child: Container(
+                          width: 330,
+                          height: 58,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                            color: Color.fromRGBO(158, 255, 0, 1),
+                          ),
+                          child: Center(
+                            child: Text(
+                              'Submit',
+                              style: GoogleFonts.barlow(
+                                fontSize: 15,
+                                fontWeight: FontWeight.w500,
+                                color: Color.fromRGBO(38, 38, 38, 1),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class ShakeWidget extends StatefulWidget {
+  final Widget child;
+  final int trigger;
+
+  const ShakeWidget({super.key, required this.child, required this.trigger});
+
+  @override
+  State<ShakeWidget> createState() => _ShakeWidgetState();
+}
+
+class _ShakeWidgetState extends State<ShakeWidget>
+    with SingleTickerProviderStateMixin {
+  late final AnimationController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 350),
+    );
+  }
+
+  @override
+  void didUpdateWidget(covariant ShakeWidget oldWidget) {
+    super.didUpdateWidget(oldWidget);
+
+    if (widget.trigger != oldWidget.trigger) {
+      _controller.forward(from: 0);
+    }
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedBuilder(
+      animation: _controller,
+      child: widget.child,
+      builder: (context, child) {
+        final dx =
+            math.sin(_controller.value * math.pi * 8) *
+            (1 - _controller.value) *
+            10;
+
+        return Transform.translate(offset: Offset(dx, 0), child: child);
+      },
     );
   }
 }
