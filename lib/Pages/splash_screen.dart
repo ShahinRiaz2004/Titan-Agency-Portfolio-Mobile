@@ -29,7 +29,7 @@ class _SplashScreenState extends State<SplashScreen> {
                 'T I T A N',
                 style: TextStyle(
                   fontWeight: FontWeight.w700,
-                  fontSize: 48,
+                  fontSize: 44,
                   color: Color(0xff1A1A1A),
                 ),
               ),

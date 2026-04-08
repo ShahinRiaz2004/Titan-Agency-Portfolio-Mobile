@@ -9,6 +9,11 @@ class CustomAppBar extends StatelessWidget {
     return AppBar(
       toolbarHeight: 108,
       backgroundColor: Color(0xff1A1A1A),
+      bottom: PreferredSize(
+        preferredSize: Size.fromHeight(1),
+        child: Container(height: 1, color: Color.fromRGBO(38, 38, 38, 1)),
+      ),
+
       actions: [
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -30,7 +35,7 @@ class CustomAppBar extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.fromLTRB(202, 40, 20, 20),
+              padding: const EdgeInsets.fromLTRB(186, 40, 20, 20),
               child: Builder(
                 builder: (context) {
                   return InkWell(
